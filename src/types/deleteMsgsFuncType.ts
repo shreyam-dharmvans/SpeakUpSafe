@@ -1,0 +1,1 @@
+export type funcType = (id: string) => Promise<void>;
