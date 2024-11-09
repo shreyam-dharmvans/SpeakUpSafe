@@ -35,34 +35,34 @@ export const authOptions: NextAuthOptions = {
                         if (result) {
 
 
-                            if (user.isVerified) {
-                                return user;
-                            } else {
-                                let curr: Date = new Date()
-                                if (user.verifyCodeExpiry < curr) {
+                            // if (user.isVerified) {
+                            return user;
+                            //  } else {
+                            //     let curr: Date = new Date()
+                            //     if (user.verifyCodeExpiry < curr) {
 
 
-                                    let verifyCode: number = Math.floor(Math.random() * 10000000) + 1;
+                            //         let verifyCode: number = Math.floor(Math.random() * 10000000) + 1;
 
-                                    let verifyCodeExpiry: Date = new Date();
-                                    verifyCodeExpiry.setMinutes(verifyCodeExpiry.getMinutes() + 30);
+                            //         let verifyCodeExpiry: Date = new Date();
+                            //         verifyCodeExpiry.setMinutes(verifyCodeExpiry.getMinutes() + 30);
 
-                                    let res = await User.findByIdAndUpdate(user._id, { verifyCode, verifyCodeExpiry }, { new: true });
+                            //         let res = await User.findByIdAndUpdate(user._id, { verifyCode, verifyCodeExpiry }, { new: true });
 
-                                    if (res) {
-                                        let emailResult = await sendEmail(res.email, res.username, res.verifyCode);
+                            //         if (res) {
+                            //             let emailResult = await sendEmail(res.email, res.username, res.verifyCode);
 
-                                        if (!emailResult.success) {
-                                            throw new Error("Error in sending New Verification code");
-                                        }
-                                    }
-
-
-                                }
+                            //             if (!emailResult.success) {
+                            //                 throw new Error("Error in sending New Verification code");
+                            //             }
+                            //         }
 
 
-                                throw new Error("User is not verified.Please verify user");
-                            }
+                            //     }
+
+
+                            //     throw new Error("User is not verified.Please verify user");
+                            // }
                         }
 
                         throw new Error("Password is incorrect");

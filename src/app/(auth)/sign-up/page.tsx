@@ -75,7 +75,7 @@ const Page = () => {
             let result = await axios.post<apiResponse>("/api/signup", values);
 
             if (result.data.success) {
-                router.push(`/verify/${values.username}`);
+                router.push(`/sign-in`);
                 toast({
                     title: "Signup Successfull",
                     description: `Please verify your email. \n Code has been sent to your email.`,
